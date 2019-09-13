@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Earth",
+            "request": "launch",
+            "mainClass": "Classes.Earth",
+            "projectName": "Sep11_98459cd1"
+        }
+    ]
+}
