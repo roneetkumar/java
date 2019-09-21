@@ -7,5 +7,6 @@ public class Earth {
 
         human1.display();
         human2.display();
+        human1.eat();
     }
 }

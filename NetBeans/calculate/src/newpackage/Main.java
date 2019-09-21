@@ -5,22 +5,34 @@
  */
 package newpackage;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Machine
  */
 public class Main {
-    
-    public static void main(String [] args){   
-        Formula oper1 = new Formula(5,10);
-        Formula oper2 = new Formula(22,55);
-        
-        System.out.println(oper1.add());
-        System.out.println(oper1.mul());
-        
-        System.out.println(oper2.add());
-        System.out.println(oper2.sub());
+
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+
+        int first, second;
+
+        System.out.println("Enter first number:");
+        first = input.nextInt();
+        System.out.println("Enter second number:");
+        second = input.nextInt();
+
+        System.out.print("Add : ");
+        System.out.println(first + second);
+        System.out.print("Sub : ");
+        System.out.println(first - second);
+        System.out.print("Mul : ");
+        System.out.println(first * second);
+        System.out.print("Div : ");
+        System.out.println(first / second);
 
     }
-    
+
 }
