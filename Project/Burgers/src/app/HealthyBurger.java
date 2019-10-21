@@ -10,6 +10,5 @@ public class HealthyBurger extends Hamburger {
 
     public HealthyBurger(String name, String rollType, double price) {
         super(name, rollType, price);
-
     }
 }

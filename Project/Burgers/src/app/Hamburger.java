@@ -7,10 +7,6 @@ public class Hamburger {
     String name = "";
     String rollType = "";
     double price = 0;
-    double meat = 2;
-    double lettuce = 0.75;
-    double tomato = 0.27;
-    double cheese = 1.13;
 
     public Hamburger(String name, String rollType, double price) {
         this.name = name;
