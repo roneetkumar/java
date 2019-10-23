@@ -10,6 +10,5 @@ public class DeluxeHamburger extends Hamburger {
 
     public DeluxeHamburger(String name, String rollType, double price) {
         super(name, rollType, price);
-
     }
 }
