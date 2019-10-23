@@ -9,9 +9,9 @@ public class App {
         input = new Scanner(System.in);
         System.out.println("Hello Java");
 
-        BasicBurger basic = new BasicBurger("Basic Hamburger", "White Roll", 3.56);
-        HealthyBurger healthy = new HealthyBurger("Healthy Hamburger", "Brown Rye Roll", 5.67);
-        DeluxeHamburger deluxe = new DeluxeHamburger("Deluxe Hamburger", "White Roll", 14.54);
+        BasicBurger basic = new BasicBurger("Basic Hamburger", "White Roll", "Sausage", 3.56);
+        HealthyBurger healthy = new HealthyBurger("Healthy Hamburger", "Brown Rye Roll", "Bacon", 5.67);
+        DeluxeHamburger deluxe = new DeluxeHamburger("Deluxe Hamburger", "White Roll", "Sausage and Bacon", 14.54);
 
         System.out.println("Enter the type of burger: \n1.Simple burger\n2.Healthy Burger\n3.Deluxe");
         System.out.print("Select : ");
@@ -21,7 +21,7 @@ public class App {
         case 1:
             System.out.println("\n" + basic.name);
             basic.selectBread();
-            basic.selectMeat();
+            // basic.selectMeat();
             System.out.printf("\n%s on a %s with %s, price is %s", basic.name, basic.rollType, basic.meat, basic.price);
             basic.addAdditionals();
             for (String i : basic.additionalItems) {
@@ -32,7 +32,7 @@ public class App {
         case 2:
             System.out.println("\n" + healthy.name);
             healthy.selectBread();
-            healthy.selectMeat();
+            // healthy.selectMeat();
             System.out.printf("\n%s on a %s with %s, price is %s", healthy.name, healthy.rollType, healthy.meat,
                     healthy.price);
             // healthy.addAdditionals();
@@ -43,7 +43,7 @@ public class App {
         case 3:
             System.out.println("\n" + deluxe.name);
             deluxe.selectBread();
-            deluxe.selectMeat();
+            // deluxe.selectMeat();
             System.out.printf("\n%s on a %s with %s, price is %s", deluxe.name, deluxe.rollType, deluxe.meat,
                     deluxe.price);
             // deluxe.addAdditionals();

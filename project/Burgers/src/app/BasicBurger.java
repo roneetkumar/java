@@ -10,8 +10,8 @@ public class BasicBurger extends Hamburger {
     double cheese = 1.13;
     double onions = 1.73;
 
-    public BasicBurger(String name, String rollType, double price) {
-        super(name, rollType, price);
+    public BasicBurger(String name, String rollType, String meat, double price) {
+        super(name, rollType, meat, price);
     }
 
     public void addAdditionals() {

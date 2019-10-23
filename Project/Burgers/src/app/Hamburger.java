@@ -15,10 +15,11 @@ public class Hamburger {
     String meat = "";
     ArrayList<String> additionalItems = new ArrayList<String>();
 
-    public Hamburger(String name, String rollType, double price) {
+    public Hamburger(String name, String rollType, String meat, double price) {
         this.name = name;
         this.rollType = rollType;
         this.price = price;
+        this.meat = meat;
     }
 
     public double getPrice() {
@@ -54,24 +55,25 @@ public class Hamburger {
         }
     }
 
-    public void selectMeat() {
-        System.out.println("\nEnter the Meat type : \n1.Sausage\n2.Bacon\n3.Sausage and Bacon");
-        int rollType = input.nextInt();
+    // public void selectMeat() {
+    // System.out.println("\nEnter the Meat type : \n1.Sausage\n2.Bacon\n3.Sausage
+    // and Bacon");
+    // int rollType = input.nextInt();
 
-        switch (rollType) {
-        case 1:
-            this.meat = "Sausage";
-            break;
-        case 2:
-            this.meat = "Bacon";
-            break;
-        case 3:
-            this.meat = "Sausage and Bacon";
-            break;
-        default:
-            break;
-        }
-    }
+    // switch (rollType) {
+    // case 1:
+    // this.meat = "Sausage";
+    // break;
+    // case 2:
+    // this.meat = "Bacon";
+    // break;
+    // case 3:
+    // this.meat = "Sausage and Bacon";
+    // break;
+    // default:
+    // break;
+    // }
+    // }
 }
 
 /*
