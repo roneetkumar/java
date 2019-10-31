@@ -41,7 +41,7 @@ public class Burger {
 
     @Override
     public String toString() {
-        return "\t" + this.name + " :- \n\t\t Cost: $" + String.format("%.2f", this.price) + "\n\t\t Maximum toppings: "
+        return this.name + " :- \n\t Cost: $" + String.format("%.2f", this.price) + "\n\t Maximum toppings: "
                 + this.maxTopping + "\n";
     }
 

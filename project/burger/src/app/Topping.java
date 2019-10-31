@@ -7,7 +7,6 @@ public class Topping {
 
     String name;
     double price;
-    boolean isAllowed;
 
     public Topping() {
         this.name = "";
@@ -25,10 +24,6 @@ public class Topping {
 
     public double getPrice() {
         return this.price;
-    }
-
-    public boolean getIsAllowed() {
-        return this.isAllowed;
     }
 
     @Override

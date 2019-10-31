@@ -38,9 +38,9 @@ public class Bill {
 
         System.out.println("\n\tReciept");
         System.out.println("\t```````");
+        System.out.println("1. " + burger.getBurgerName() + " - " + burger.getBurgerPrice());
         if (allToppings.size() > 0) {
             int counter = 1;
-            System.out.println("1. " + burger.getBurgerName() + " - " + burger.getBurgerPrice());
             System.out.println("\nExtras : ");
             System.out.println("````````");
 
@@ -48,15 +48,16 @@ public class Bill {
                 System.out.print(counter + ". " + topping);
                 counter++;
             }
-            System.out.println("\n-----------------------------");
+        } else {
+            System.out.println("\nNo extras toppings");
+
         }
 
+        System.out.println("\n-----------------------------");
         System.out.print("Amount: " + String.format("%.2f", total) + "$");
         System.out.print(" + (Tax: " + String.format("%.2f", tax) + "$)");
         System.out.println("\n-----------------------------");
         System.out.println("Total: " + String.format("%.2f", netTotal) + "$");
         System.out.println("-----------------------------");
-
     }
-
 }

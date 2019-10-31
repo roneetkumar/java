@@ -14,12 +14,12 @@ public class Management {
     private static Burger burger = new Burger();
 
     public static void displayMenu() {
-        System.out.println("\n\tPlease select an option:");
-        System.out.println("\t````````````````````````");
-        System.out.println("\t1. See burger types");
-        System.out.println("\t2. See burger toppings");
-        System.out.println("\t3. Build a burger");
-        System.out.print("\n\tSelect:  ");
+        System.out.println("\nPlease select an option:");
+        System.out.println("````````````````````````");
+        System.out.println("1. See burger types");
+        System.out.println("2. See burger toppings");
+        System.out.println("3. Build a burger");
+        System.out.print("\nSelect:  ");
         try {
             input = new Scanner(System.in);
             userInput(input.nextInt());
@@ -48,8 +48,8 @@ public class Management {
     }
 
     public static void displayBurger() {
-        System.out.println("\n\tAll Burgers :");
-        System.out.println("\t`````````````");
+        System.out.println("\nAll Burgers :");
+        System.out.println("`````````````");
 
         for (Burger burger : fridge.getBurgers()) {
             System.out.println(burger);
@@ -58,12 +58,12 @@ public class Management {
     }
 
     public static void displayIngredients() {
-        System.out.println("\n\tAll Toppings : ");
-        System.out.println("\t```````````````");
+        System.out.println("\nAll Toppings : ");
+        System.out.println("```````````````");
         int tmpCounter = 1;
 
         for (Topping topping : fridge.getToppings()) {
-            System.out.print("\t" + tmpCounter + ". " + topping);
+            System.out.print(tmpCounter + ". " + topping);
             tmpCounter++;
         }
         displayMenu();
@@ -76,13 +76,13 @@ public class Management {
 
     public static void displayBurgerChoice() {
         int tmpCounter = 1;
-        System.out.println("\n\tPlease select a burger:");
-        System.out.println("\t```````````````````````");
+        System.out.println("\nPlease select a burger:");
+        System.out.println("```````````````````````");
         for (Burger burger : fridge.getBurgers()) {
-            System.out.print("\t" + tmpCounter + ". " + burger.getBurgerName() + "\n");
+            System.out.print(tmpCounter + ". " + burger.getBurgerName() + "\n");
             tmpCounter++;
         }
-        System.out.print("\n\tSelect: ");
+        System.out.print("\nSelect: ");
 
         try {
             input = new Scanner(System.in);
@@ -96,16 +96,16 @@ public class Management {
     public static void displayToppingChoice() {
         Integer tmpCounter = 1;
         int toppingCount = burger.getMaxTopping();
-        System.out.println("\n\tPlease select any " + toppingCount + " toppings:");
-        System.out.println("\t`````````````````````````````");
+        System.out.println("\nPlease select any " + toppingCount + " toppings:");
+        System.out.println("`````````````````````````````");
 
         for (Topping topping : burger.toppingOfBurger) {
-            System.out.print("\t" + tmpCounter + ". " + topping);
+            System.out.print(tmpCounter + ". " + topping);
             tmpCounter++;
         }
 
-        System.out.print("\t0. Thats all ");
-        System.out.print("\n\n\tSelect: ");
+        System.out.print("0. Thats all ");
+        System.out.print("\n\nSelect: ");
 
         try {
             input = new Scanner(System.in);
@@ -163,14 +163,14 @@ public class Management {
             reciept.generateReciept();
             break;
         default:
-            System.out.println("\n\tPlease select the right topping");
+            System.out.println("\nPlease select the right topping");
             displayToppingChoice();
             break;
         }
     }
 
     public static void Error() {
-        System.out.println("\n \tInvalid option, please try again");
+        System.out.println("\nInvalid option, please try again");
     }
 
 }
