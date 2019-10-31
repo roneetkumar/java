@@ -1,79 +1,176 @@
 package app;
 
-import app.Hamburger;
-import app.Ingredient;
-// import app.Ingredients.*;
-import app.Burgers.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 
-/*Management*/
-
+/**
+ * Management
+ */
 public class Management {
 
-    public static Scanner input = new Scanner(System.in);
+    public static Scanner input;
 
-    private ArrayList<Hamburger> allBurgers = new ArrayList<Hamburger>();
-    private ArrayList<Ingredient> allIngredients = new ArrayList<Ingredient>();
+    private static Fridge fridge = new Fridge();
+    private static Bill reciept = new Bill();
+    private static Burger burger = new Burger();
 
-    public ArrayList<Hamburger> getBurgers() {
-        return this.allBurgers;
-    }
-
-    public ArrayList<Ingredient> getIngredients() {
-        return this.allIngredients;
-    }
-
-    Management() {
-        allBurgers.add(new BasicBurger());
-        allBurgers.add(new HealthyBurger());
-        allBurgers.add(new DeluxeBurger());
-        allIngredients.add(new Ingredient("Lettuce", 0.75, false));
-        allIngredients.add(new Ingredient("Tomato", 0.27, false));
-        allIngredients.add(new Ingredient("Cheese", 1.13, false));
-        allIngredients.add(new Ingredient("Egg", 5.43, false));
-        allIngredients.add(new Ingredient("Lentils", 3.14, false));
-        allIngredients.add(new Ingredient("Chips", 2.75, false));
-        allIngredients.add(new Ingredient("Drinks", 1.81, false));
-
-    }
-
-    public static void displayBurgerOptions() {
-        System.out.println("\n\tAll Burgers : ");
-
-        for (Hamburger currentBurger : new Management().getBurgers()) {
-            System.out.println(currentBurger.toString());
+    public static void displayMenu() {
+        System.out.println("\n\tPlease select an option:");
+        System.out.println("\t````````````````````````");
+        System.out.println("\t1. See burger types");
+        System.out.println("\t2. See burger toppings");
+        System.out.println("\t3. Build a burger");
+        System.out.print("\n\tSelect:  ");
+        try {
+            input = new Scanner(System.in);
+            userInput(input.nextInt());
+        } catch (Exception e) {
+            Error();
+            displayMenu();
         }
-        App.displayMenu();
+    }
+
+    public static void userInput(int userSelection) {
+        switch (userSelection) {
+        case 1:
+            Management.displayBurger();
+            break;
+        case 2:
+            Management.displayIngredients();
+            break;
+        case 3:
+            Management.createBurger();
+            break;
+        default:
+            Error();
+            displayMenu();
+            break;
+        }
+    }
+
+    public static void displayBurger() {
+        System.out.println("\n\tAll Burgers :");
+        System.out.println("\t`````````````");
+
+        for (Burger burger : fridge.getBurgers()) {
+            System.out.println(burger);
+        }
+        displayMenu();
     }
 
     public static void displayIngredients() {
-        System.out.println("\n\tAll Ingredients : ");
-        for (Ingredient currentIngredient : new Management().getIngredients()) {
-            System.out.println(currentIngredient.toString());
+        System.out.println("\n\tAll Toppings : ");
+        System.out.println("\t```````````````");
+        int tmpCounter = 1;
+
+        for (Topping topping : fridge.getToppings()) {
+            System.out.print("\t" + tmpCounter + ". " + topping);
+            tmpCounter++;
         }
-        App.displayMenu();
+        displayMenu();
     }
 
-    public static void buildBurger() {
-        System.out.println("building");
+    public static void createBurger() {
+        displayBurgerChoice();
+        displayToppingChoice();
     }
 
-    // public static void recordBurgerChoice(int selectedBurger) {
-    // Hamburger burgerSelection = new Hamburger();
-    // switch (selectedBurger) {
-    // case 1:
-    // burgerSelection = new BasicBurger();
-    // break;
-    // case 2:
-    // burgerSelection = new HealthyBurger();
-    // break;
-    // case 3:
-    // burgerSelection = new DeluxeBurger();
-    // break;
-    // default:
-    // System.out.println("\n \t\t Invalid option, please try again \n");
-    // break;
-    // }
-    // }
+    public static void displayBurgerChoice() {
+        int tmpCounter = 1;
+        System.out.println("\n\tPlease select a burger:");
+        System.out.println("\t```````````````````````");
+        for (Burger burger : fridge.getBurgers()) {
+            System.out.print("\t" + tmpCounter + ". " + burger.getBurgerName() + "\n");
+            tmpCounter++;
+        }
+        System.out.print("\n\tSelect: ");
+
+        try {
+            input = new Scanner(System.in);
+            storeBurgerChoice(input.nextInt());
+        } catch (Exception e) {
+            Error();
+            displayBurgerChoice();
+        }
+    }
+
+    public static void displayToppingChoice() {
+        Integer tmpCounter = 1;
+        int toppingCount = burger.getMaxTopping();
+        System.out.println("\n\tPlease select any " + toppingCount + " toppings:");
+        System.out.println("\t`````````````````````````````");
+
+        for (Topping topping : burger.toppingOfBurger) {
+            System.out.print("\t" + tmpCounter + ". " + topping);
+            tmpCounter++;
+        }
+
+        System.out.print("\t0. Thats all ");
+        System.out.print("\n\n\tSelect: ");
+
+        try {
+            input = new Scanner(System.in);
+            storeToppingChoice(input.nextInt());
+        } catch (Exception e) {
+            Error();
+            displayToppingChoice();
+        }
+    }
+
+    public static void storeBurgerChoice(int selectedBurger) throws Exception {
+        switch (selectedBurger) {
+        case 1:
+            burger = new BasicBurger();
+            break;
+        case 2:
+            burger = new HealthyBurger();
+            break;
+        case 3:
+            burger = new DeluxeBurger();
+            break;
+        default:
+            Error();
+            displayBurgerChoice();
+            break;
+        }
+        try {
+            reciept.setBurgerChoice(burger);
+        } catch (Exception ex) {
+            throw new Exception("this burger is not available");
+        }
+    }
+
+    public static void storeToppingChoice(int selectedTopping) {
+        switch (selectedTopping) {
+        case 1:
+            reciept.addTopping(burger.toppingOfBurger.get(0));
+            break;
+        case 2:
+            reciept.addTopping(burger.toppingOfBurger.get(1));
+            break;
+        case 3:
+            reciept.addTopping(burger.toppingOfBurger.get(2));
+            break;
+        case 4:
+            reciept.addTopping(burger.toppingOfBurger.get(3));
+            break;
+        case 5:
+            reciept.addTopping(burger.toppingOfBurger.get(3));
+            break;
+        case 6:
+            reciept.addTopping(burger.toppingOfBurger.get(3));
+            break;
+        case 0:
+            reciept.generateReciept();
+            break;
+        default:
+            System.out.println("\n\tPlease select the right topping");
+            displayToppingChoice();
+            break;
+        }
+    }
+
+    public static void Error() {
+        System.out.println("\n \tInvalid option, please try again");
+    }
+
 }

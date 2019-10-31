@@ -12,9 +12,9 @@
         },
         {
             "type": "java",
-            "name": "Debug (Launch)-App<burger>",
+            "name": "Debug (Launch)-Main<burger>",
             "request": "launch",
-            "mainClass": "app.App",
+            "mainClass": "app.Main",
             "projectName": "burger"
         }
     ]

@@ -3,22 +3,20 @@ package app;
 /**
  * Ingredient
  */
-public class Ingredient {
+public class Topping {
 
     String name;
     double price;
     boolean isAllowed;
 
-    public Ingredient() {
+    public Topping() {
         this.name = "";
         this.price = 0;
-        this.isAllowed = false;
     }
 
-    public Ingredient(String name, double price, boolean isAllowed) {
+    public Topping(String name, double price) {
         this.name = name;
         this.price = price;
-        this.isAllowed = isAllowed;
     }
 
     public String getName() {
@@ -35,6 +33,6 @@ public class Ingredient {
 
     @Override
     public String toString() {
-        return "\n\t\t" + this.name + " : $" + String.format("%.2f", this.price);
+        return this.name + " : $" + String.format("%.2f", this.price) + "\n";
     }
 }
