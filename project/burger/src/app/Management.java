@@ -134,7 +134,7 @@ public class Management {
         }
         try {
             reciept.setBurgerChoice(burger);
-        } catch (Exception ex) {
+        } catch (Exception e) {
             throw new Exception("this burger is not available");
         }
     }
@@ -154,10 +154,10 @@ public class Management {
             reciept.addTopping(burger.toppingOfBurger.get(3));
             break;
         case 5:
-            reciept.addTopping(burger.toppingOfBurger.get(3));
+            reciept.addTopping(burger.toppingOfBurger.get(4));
             break;
         case 6:
-            reciept.addTopping(burger.toppingOfBurger.get(3));
+            reciept.addTopping(burger.toppingOfBurger.get(5));
             break;
         case 0:
             reciept.generateReciept();
