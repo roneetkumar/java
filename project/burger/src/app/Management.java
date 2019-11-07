@@ -119,13 +119,13 @@ public class Management {
     public static void storeBurgerChoice(int selectedBurger) throws Exception {
         switch (selectedBurger) {
         case 1:
-            burger = new BasicBurger();
+            burger = fridge.getBurgers().get(0);
             break;
         case 2:
-            burger = new HealthyBurger();
+            burger = fridge.getBurgers().get(1);
             break;
         case 3:
-            burger = new DeluxeBurger();
+            burger = fridge.getBurgers().get(2);
             break;
         default:
             Error();

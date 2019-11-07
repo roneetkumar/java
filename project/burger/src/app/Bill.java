@@ -15,6 +15,7 @@ public class Bill {
 
     public void addTopping(Topping topping) {
         this.allToppings.add(topping);
+
         if (this.burger.getMaxTopping() == allToppings.size()) {
             generateReciept();
         } else {

@@ -11,13 +11,20 @@ public class User {
     private String lastName;
     private String userID;
     private String pin;
-    ArrayList<Account> accounts = new ArrayList<Account>();
+    private ArrayList<Account> accounts = new ArrayList<Account>();
 
     public User(String firstName, String lastName, String pin) {
         this.firstName = firstName.toUpperCase();
         this.lastName = lastName.toUpperCase();
         this.userID = BankSystem.generateRandomString(4);
         this.pin = pin;
+    }
+
+    /**
+     * @return the accounts
+     */
+    public ArrayList<Account> getAccounts() {
+        return accounts;
     }
 
     /**
@@ -55,31 +62,20 @@ public class User {
         this.pin = pin;
     }
 
-    public void login(int attempt) {
-        System.out.print("Enter PIN : ");
-        String tempPIN = BankSystem.input.next();
+    public boolean authenticatePIN(String tempPIN) {
+        return this.pin.equals(tempPIN);
+    }
 
-        if (tempPIN.equals(this.pin)) {
+    public void initiateLogin(User foundUser) {
+        System.out.println("\nSelect Options : ");
+        int temp = 1;
 
-            System.out.println("\nSelect Options : ");
-            int temp = 1;
-
-            for (Account account : accounts) {
-                System.out.println(temp + ". " + account);
-                temp++;
-            }
-            System.out.println(temp + ". Settings");
-
-        } else {
-            if (attempt == 3) {
-                System.out.println(
-                        "\nNOTE: Sorry you have exceeded the number of allowed attempts,\nyour account has been temporary blocked, please visit the nearest branch or contact customer support.");
-            } else {
-                System.out.println("Entered PIN is not correct");
-                attempt++;
-                login(attempt);
-            }
+        for (Account account : foundUser.getAccounts()) {
+            System.out.println(temp + ". " + account);
+            temp++;
         }
+        System.out.println(temp + ". Settings");
+        System.out.println("Select : ");
     }
 
     public String toString() {

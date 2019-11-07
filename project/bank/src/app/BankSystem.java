@@ -41,18 +41,18 @@ public class BankSystem {
 
     }
 
-    public void selectMenuOption(int choice) {
+    private void selectMenuOption(int choice) {
         if (choice == 1) {
             createUser();
         } else if (choice == 2) {
-            initLogin();
+            prepareLogin();
         } else {
             generateError("\nNOTE: please select the correct option\n");
             displayMenu();
         }
     }
 
-    public void createUser() {
+    private void createUser() {
         System.out.println("\n\tCreate Account");
         System.out.println("\t``````````````");
 
@@ -81,7 +81,7 @@ public class BankSystem {
         }
     }
 
-    public void createAccount(User newUser) {
+    private void createAccount(User newUser) {
         System.out.println("\nSelect the type of account(s) you want to create :");
         System.out.println("1. Savings");
         System.out.println("2. Chequing");
@@ -108,29 +108,61 @@ public class BankSystem {
             break;
         }
 
-        System.out.println("\nCongratulations your account created sucessfuly\n");
+        System.out.println("\nCongratulations your account(s) has been created sucessfuly\n");
         System.out.println("Account Info : ");
         System.out.println(newUser);
     }
 
     // login method
-    public static void initLogin() {
+    private static void prepareLogin() {
         System.out.println("\n\t Login");
         System.out.println("\t `````");
 
-        System.out.print("Enter User ID : ");
-        String tempUserID = input.next();
-        boolean found = false;
+        User foundUser = findUser(readString("Enter User ID : "));
+        int maxAttempts = 3;
+        if (foundUser != null) {
+            if (checkPassword(foundUser, maxAttempts)) {
+                foundUser.initiateLogin(foundUser);
+            } else {
+                generateError(
+                        "\nNOTE: Sorry you have exceeded the number of allowed attempts,\nyour account has been temporary blocked, please visit the nearest branch or contact customer support.");
+            }
+        } else {
+            generateError("No account with this User ID Exits");
+            prepareLogin();
+        }
+    }
 
-        for (User user : allUsers) {
-            if (tempUserID.equals(user.getUserID())) {
-                found = !found;
-                user.login(1);
+    private static boolean checkPassword(User foundUser, int attempt) {
+        if (attempt != 0) {
+            if (foundUser.authenticatePIN(readString("Enter PIN : "))) {
+                return true;
+            } else {
+                System.out.println("Entered PIN is not correct");
+                checkPassword(foundUser, --attempt);
             }
         }
-        if (!found) {
-            generateError("No account with this User ID Exits");
+        return false;
+    }
+
+    private static String readString(String line) {
+        System.out.print(line);
+        String tempStr = "";
+        try {
+            tempStr = input.next();
+        } catch (Exception e) {
+            readString(line);
         }
+        return tempStr;
+    }
+
+    private static User findUser(String tempUserID) {
+        for (User user : allUsers) {
+            if (tempUserID.equals(user.getUserID())) {
+                return user;
+            }
+        }
+        return null;
     }
 
     public static String generateRandomString(int length) {
