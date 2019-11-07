@@ -79,7 +79,7 @@ public class Management {
         System.out.println("\nPlease select a burger:");
         System.out.println("```````````````````````");
         for (Burger burger : fridge.getBurgers()) {
-            System.out.print(tmpCounter + ". " + burger.getBurgerName() + "\n");
+            System.out.print(tmpCounter + ". " + burger.getBurgerName() + " with " + burger.getRollType() + "\n");
             tmpCounter++;
         }
         System.out.print("\nSelect: ");
@@ -99,11 +99,10 @@ public class Management {
         System.out.println("\nPlease select any " + toppingCount + " toppings:");
         System.out.println("`````````````````````````````");
 
-        for (Topping topping : burger.toppingOfBurger) {
+        for (Topping topping : burger.getToppingsOfBurger()) {
             System.out.print(tmpCounter + ". " + topping);
             tmpCounter++;
         }
-
         System.out.print("0. Thats all ");
         System.out.print("\n\nSelect: ");
 
@@ -116,7 +115,7 @@ public class Management {
         }
     }
 
-    public static void storeBurgerChoice(int selectedBurger) throws Exception {
+    private static void storeBurgerChoice(int selectedBurger) throws Exception {
         switch (selectedBurger) {
         case 1:
             burger = fridge.getBurgers().get(0);
@@ -139,25 +138,25 @@ public class Management {
         }
     }
 
-    public static void storeToppingChoice(int selectedTopping) {
+    private static void storeToppingChoice(int selectedTopping) {
         switch (selectedTopping) {
         case 1:
-            reciept.addTopping(burger.toppingOfBurger.get(0));
+            reciept.addTopping(burger.getToppingsOfBurger().get(0));
             break;
         case 2:
-            reciept.addTopping(burger.toppingOfBurger.get(1));
+            reciept.addTopping(burger.getToppingsOfBurger().get(1));
             break;
         case 3:
-            reciept.addTopping(burger.toppingOfBurger.get(2));
+            reciept.addTopping(burger.getToppingsOfBurger().get(2));
             break;
         case 4:
-            reciept.addTopping(burger.toppingOfBurger.get(3));
+            reciept.addTopping(burger.getToppingsOfBurger().get(3));
             break;
         case 5:
-            reciept.addTopping(burger.toppingOfBurger.get(4));
+            reciept.addTopping(burger.getToppingsOfBurger().get(4));
             break;
         case 6:
-            reciept.addTopping(burger.toppingOfBurger.get(5));
+            reciept.addTopping(burger.getToppingsOfBurger().get(5));
             break;
         case 0:
             reciept.generateReciept();
@@ -169,7 +168,7 @@ public class Management {
         }
     }
 
-    public static void Error() {
+    private static void Error() {
         System.out.println("\nInvalid option, please try again");
     }
 

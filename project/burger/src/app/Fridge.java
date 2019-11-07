@@ -26,7 +26,6 @@ public class Fridge {
         allBurgers.add(basicBurger);
         allBurgers.add(healthyBurger);
         allBurgers.add(deluxeBurger);
-        this.allToppings.addAll(basicBurger.getToppingsOfBurger());
         this.allToppings.addAll(healthyBurger.getToppingsOfBurger());
         this.allToppings.addAll(deluxeBurger.getToppingsOfBurger());
     }

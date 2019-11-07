@@ -6,8 +6,8 @@ import java.util.ArrayList;
  * Bill
  */
 public class Bill {
-    Burger burger;
-    ArrayList<Topping> allToppings = new ArrayList<Topping>();
+    private Burger burger;
+    private ArrayList<Topping> allToppings = new ArrayList<Topping>();
 
     public void setBurgerChoice(Burger burger) {
         this.burger = burger;
@@ -23,7 +23,7 @@ public class Bill {
         }
     }
 
-    public double calcTotal() {
+    private double calcTotal() {
         double tmpRunningTotal = 0;
         tmpRunningTotal += burger.getBurgerPrice();
         for (Topping topping : allToppings) {
