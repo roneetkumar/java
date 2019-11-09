@@ -35,7 +35,7 @@ public class Management {
             Management.displayBurger();
             break;
         case 2:
-            Management.displayIngredients();
+            Management.displayToppings();
             break;
         case 3:
             Management.createBurger();
@@ -57,7 +57,7 @@ public class Management {
         displayMenu();
     }
 
-    public static void displayIngredients() {
+    public static void displayToppings() {
         System.out.println("\nAll Toppings : ");
         System.out.println("```````````````");
         int tmpCounter = 1;
