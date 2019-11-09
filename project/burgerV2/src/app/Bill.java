@@ -14,7 +14,7 @@ public class Bill {
 
         System.out.println("\n\tReciept");
         System.out.println("\t```````");
-        System.out.println("1. " + selectedBurger.name + " - " + selectedBurger.getPrice());
+        System.out.println("1. " + selectedBurger.getName() + " - " + selectedBurger.getPrice());
 
         if (selectedToppings.size() > 0) {
             int i = 1;
