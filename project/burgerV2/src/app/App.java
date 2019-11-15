@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class App {
     public static void main(String[] args) throws Exception {
-
         new Restaurant();
         Bill receipt = new Bill();
 
@@ -15,6 +14,5 @@ public class App {
         Restaurant.displayToppings(selectedBurger);
         Restaurant.chooseToppings(selectedBurger, selectedToppings);
         receipt.generateReciept(selectedBurger, selectedToppings);
-
     }
 }

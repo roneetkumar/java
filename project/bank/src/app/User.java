@@ -66,20 +66,18 @@ public class User {
         return this.pin.equals(tempPIN);
     }
 
-    public void initiateLogin(User foundUser) {
-        System.out.println("\nSelect Options : ");
-        int temp = 1;
+    public boolean deposite(double amount, Account selectedAccount) {
 
-        for (Account account : foundUser.getAccounts()) {
-            System.out.println(temp + ". " + account);
-            temp++;
-        }
-        System.out.println(temp + ". Settings");
-        System.out.println("Select : ");
+        return selectedAccount.setBalance(amount);
+    }
+
+    public boolean widthrawl(double amount, Account selectedAccount) {
+        return selectedAccount.setBalance(amount);
     }
 
     public String toString() {
         return "Name : " + this.firstName + " " + this.lastName + "\nUser ID : --- " + this.userID
                 + " --- (NOTE: Remember User ID for Login)\nAccounts: " + this.accounts + "\n";
     }
+
 }

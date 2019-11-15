@@ -22,6 +22,17 @@ public class Account {
         return balance;
     }
 
+    public boolean setBalance(double balance) {
+
+        if (balance > 0) {
+            this.balance += balance;
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
     /**
      * @return the accountNumber
      */
@@ -35,12 +46,6 @@ public class Account {
     public String getAccountType() {
         return accountType;
     }
-
-    // public boolean deposite(double amount) {
-
-    // this.balance += amount;
-
-    // }
 
     @Override
     public String toString() {

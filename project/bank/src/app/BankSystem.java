@@ -10,19 +10,20 @@ import app.Accounts.*;
  */
 public class BankSystem {
 
-    private String bankName = "Scocia Bank";
     public static Scanner input;
     public static ArrayList<User> allUsers = new ArrayList<User>();
+
+    private static String bankName = "Scocia Bank";
 
     /**
      * @return the bankName
      */
-    public void getBankName() {
-        System.out.println("\t" + this.bankName);
+    public static void getBankName() {
+        System.out.println("\t" + bankName);
         System.out.println("\t```````````");
     }
 
-    public void displayMenu() {
+    public static void displayMenu() {
         System.out.println("\t  Options");
         System.out.println("\t  ```````");
         System.out.println("1. Create Account");
@@ -33,26 +34,26 @@ public class BankSystem {
 
         try {
             input = new Scanner(System.in);
-            selectMenuOption(input.nextInt());
+            selectOption(input.nextInt());
         } catch (Exception e) {
-            generateError("\nNOTE: only integers are allowed to navigate option\n");
-            displayMenu();
-        }
-
-    }
-
-    private void selectMenuOption(int choice) {
-        if (choice == 1) {
-            createUser();
-        } else if (choice == 2) {
-            prepareLogin();
-        } else {
             generateError("\nNOTE: please select the correct option\n");
             displayMenu();
         }
+
     }
 
-    private void createUser() {
+    private static void selectOption(int select) {
+        if (select == 1) {
+            BankSystem.createUser();
+        } else if (select == 2) {
+            BankSystem.prepareLogin();
+        } else {
+            generateError("\nNOTE: please select the correct option\n");
+            BankSystem.displayMenu();
+        }
+    }
+
+    private static void createUser() {
         System.out.println("\n\tCreate Account");
         System.out.println("\t``````````````");
 
@@ -75,13 +76,12 @@ public class BankSystem {
             createAccount(newUser);
             allUsers.add(newUser);
             displayMenu();
-
         } catch (Exception e) {
             createUser();
         }
     }
 
-    private void createAccount(User newUser) {
+    private static void createAccount(User newUser) {
         System.out.println("\nSelect the type of account(s) you want to create :");
         System.out.println("1. Savings");
         System.out.println("2. Chequing");
@@ -122,7 +122,7 @@ public class BankSystem {
         int maxAttempts = 3;
         if (foundUser != null) {
             if (checkPassword(foundUser, maxAttempts)) {
-                foundUser.initiateLogin(foundUser);
+                initiateLogin(foundUser);
             } else {
                 generateError(
                         "\nNOTE: Sorry you have exceeded the number of allowed attempts,\nyour account has been temporary blocked, please visit the nearest branch or contact customer support.");
@@ -131,6 +131,54 @@ public class BankSystem {
             generateError("No account with this User ID Exits");
             prepareLogin();
         }
+    }
+
+    private static void initiateLogin(User foundUser) {
+
+        System.out.println("\n\nWelcome to Scotia Online Banking");
+        System.out.println("````````````````````````````````");
+
+        System.out.println("User ID : " + foundUser.getUserID());
+        System.out.println("Full Name : " + foundUser.getFirstName() + " " + foundUser.getLastName());
+        System.out.println("\nAccounts: ");
+        int temp = 1;
+
+        for (Account account : foundUser.getAccounts()) {
+            System.out.println(temp + ". " + account);
+            temp++;
+        }
+        System.out.println(temp + ". Settings");
+        System.out.println("0. Log Out");
+        System.out.print("\nSelect : ");
+
+        selectAccountOptions(foundUser);
+
+    }
+
+    private static void selectAccountOptions(User foundUser) {
+        try {
+            input = new Scanner(System.in);
+            int select = input.nextInt();
+
+            if (select == 0) {
+                return;
+            } else if (select >= 1 && select < 3) {
+
+                Account selectedAccount = foundUser.getAccounts().get(select - 1);
+                operateAccount(selectedAccount);
+            } else {
+                generateError("\nNOTE: please select the correct option\n");
+                selectAccountOptions(foundUser);
+            }
+        } catch (Exception e) {
+            generateError("\nNOTE: please select the correct option\n");
+            selectAccountOptions(foundUser);
+        }
+    }
+
+    private static void operateAccount(Account seletedAccount) {
+
+        return;
     }
 
     private static boolean checkPassword(User foundUser, int attempt) {
