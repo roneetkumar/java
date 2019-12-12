@@ -6,7 +6,7 @@ import java.util.Scanner;
  * Management
  */
 public class Management {
-
+  
     public static Scanner input;
 
     private static Fridge fridge = new Fridge();
