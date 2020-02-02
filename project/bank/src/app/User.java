@@ -1,6 +1,5 @@
 package app;
 
-import app.Accounts.*;
 import java.util.ArrayList;
 
 /**

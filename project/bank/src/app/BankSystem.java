@@ -3,7 +3,6 @@ package app;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
-import app.Accounts.*;
 
 /**
  * BankSystem
@@ -91,14 +90,14 @@ public class BankSystem {
 
         switch (input.nextInt()) {
         case 1:
-            newUser.setAccounts(new Savings());
+            newUser.setAccounts(new Account("Savings"));
             break;
         case 2:
-            newUser.setAccounts(new Savings());
+            newUser.setAccounts(new Account("Chequing"));
             break;
         case 3:
-            newUser.setAccounts(new Savings());
-            newUser.setAccounts(new Chequing());
+            newUser.setAccounts(new Account("Savings"));
+            newUser.setAccounts(new Account("Chequing"));
             break;
         case 0:
             displayMenu();
@@ -163,7 +162,6 @@ public class BankSystem {
             if (select == 0) {
                 return;
             } else if (select >= 1 && select < 3) {
-
                 Account selectedAccount = foundUser.getAccounts().get(select - 1);
                 operateAccount(selectedAccount);
             } else {
@@ -176,8 +174,36 @@ public class BankSystem {
         }
     }
 
-    private static void operateAccount(Account seletedAccount) {
+    private static void displayAccountMenu() {
+        System.out.println("1. Deposite");
+        System.out.println("2. Withdrawl");
+        System.out.println("3. Transfer");
+        System.out.println("0. LogOut");
+        System.out.println("Select : ");
 
+    }
+
+    private static void selectAccountMenuOption() {
+
+        try {
+            input = new Scanner(System.in);
+            int select = input.nextInt();
+
+            if (select == 1) {
+                System.out.println("Enter how much you want to deposite : ");
+                select = input.nextInt();
+
+            }
+
+        } catch (Exception e) {
+            generateError("\nNOTE: please select the correct option\n");
+            displayAccountMenu();
+        }
+    }
+
+    private static void operateAccount(Account seletedAccount) {
+        displayAccountMenu();
+        selectAccountMenuOption();
         return;
     }
 
